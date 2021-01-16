@@ -12,6 +12,7 @@ class MovieList extends React.Component {
 
     addToNominated = movie => {
         this.setState({ nominatedList: [movie, ...this.state.nominatedList] })
+
     }
 
     removeNominated = (id) => {
@@ -39,7 +40,7 @@ class MovieList extends React.Component {
                                         className="button"
                                         onClick={() => {
                                             this.addToNominated(movie)
-
+          
                                             if (nominatedList.length === 4) {
                                                 toast('you have 5 nomination')
                                             }
@@ -52,7 +53,7 @@ class MovieList extends React.Component {
                             })
                         }
                     </div>
-                </div>
+                </div><hr style={{ color:"000", height:'auto', border:'.px solid gray',opacity:'.2'}}/>
                 <div className="nomList">
                     <Nominated nominatedList={this.state.nominatedList} removeNominated={this.removeNominated} />
                 </div>
