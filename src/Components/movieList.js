@@ -10,9 +10,7 @@ class MovieList extends React.Component {
 
     addToNominated = movie => {
         this.setState({ nominatedList: [movie, ...this.state.nominatedList]})
-
     }
-
 
     removeNominated = (id) => {
         const removeList = this.state.nominatedList.filter(nominated => {
@@ -28,13 +26,12 @@ class MovieList extends React.Component {
         return (
             <div className="movieList container">
                 <div className="movieList-Sub">
-                    <h3>Movie List:</h3>
-                        <div>
+                        <div className="movie-list2 ">
                             {
                                 this.props.movieList && this.props.movieList.map((movie, imdbID) => {
                                     return (<div className="list" key={imdbID}>
                                         <li><img className="img" src={movie.Poster} alt="Img" /></li>
-                                        <li><h2>Title: {movie.Title}</h2></li>
+                                        <li><span><h4>Title:</h4>{movie.Title}</span></li>
                                         <li><h3>Movie Year: {movie.Year}</h3></li>
                                         <li><button
                                             className="button"
@@ -44,13 +41,11 @@ class MovieList extends React.Component {
                                         </button></li>
 
                                     </div>)
-                                
                                 })
                             }
                         </div>
                 </div>
                 <div className="nomList">
-                    <h1>Nominated</h1>
                     <Nominated nominatedList={this.state.nominatedList} removeNominated={this.removeNominated} />
                 </div>
 

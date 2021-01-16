@@ -21,7 +21,8 @@ class Search extends React.Component {
                             value={this.state.term}
                             onChange={(e) => this.setState({ term: e.target.value })}
                             placeholder="search..." />
-                        <button className="button">Search</button>
+                        <button className="button"><i class="fa fa-search" aria-hidden="true"></i>
+</button>
                     </div>
                 </form>                
             </div>

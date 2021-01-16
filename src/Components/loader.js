@@ -1,10 +1,10 @@
 import React from "react";
 
 
-const Spinner = () => {
+const Spinner = (props) => {
     return(
-        <div class="ui active inverted dimmer">
-        <div class="ui large text loader">Loading</div>
+        <div className="ui active inverted dimmer">
+        <div className="ui large text loader">Loading</div>
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toast'
 import Search from '././Components/search';
 import DisplayList from './Components/movieList'
+import "./App.css";
 
 class App extends React.Component {
  
@@ -15,20 +15,20 @@ class App extends React.Component {
       .then(res => {
         this.setState({ movies: res.data.Search });
       })
-      .catch( err => toast.error(err.message));
   }
 
-  
   render() {
-
-    const success = () => toast.success('Message sent successfully!')
     return (
       <div className="ui container" style={{ marginTop: '10px' }}>
-        <h1>Next Movie Award</h1>
+        <header className="header-text">Next Movie Award</header>
         <div className="searchBox">
         <Search onSubmit={this.onSearchSubmit} />
         </div>
-          <div className="ui segment">   
+          <div className="ui segment"> 
+          <div className="header-tile">
+            <div className="text">Movie List </div  >
+            <div className="text">Nominated </div>
+            </div>  
               <DisplayList movieList={this.state.movies} />
             </div>
         </div>

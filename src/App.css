@@ -1,16 +1,14 @@
 .container {
     display: flex;
     text-align: center;
-    position: relative;
-    text-align: center;
+  
 }
 .header-text {
-    font-family: Noto, Serif;
-    place-content: center;
     font-weight: 700;
+    font-size: large;
+    font-display: block;
 }
 .searchBox {
-    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -18,4 +16,14 @@
     color: white;
     text-align: center;
     display: inline-block;
+}
+.header-tile{
+    display: flex;
+    justify-content: space-around;
+}
+
+.text {
+    font-size: medium;
+    font-weight: 700;
+    font-display: flex;
 }
