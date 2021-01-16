@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   onSearchSubmit = (movieName) => {
-    axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=6590609&type=movie&s=${movieName}`)
+    axios.get(`https://www.omdbapi.com/?i=tt3896198&apikey=6590609&type=movie&s=${movieName}`)
       .then(res => {
         this.setState({ movies: res.data.Search });
       })
