@@ -1,6 +1,8 @@
 import React from 'react'
 import '../movieList.css';
 import Nominated from './nominatedList'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class MovieList extends React.Component {
 
@@ -9,7 +11,7 @@ class MovieList extends React.Component {
     }
 
     addToNominated = movie => {
-        this.setState({ nominatedList: [movie, ...this.state.nominatedList]})
+        this.setState({ nominatedList: [movie, ...this.state.nominatedList] })
     }
 
     removeNominated = (id) => {
@@ -26,29 +28,35 @@ class MovieList extends React.Component {
         return (
             <div className="movieList container">
                 <div className="movieList-Sub">
-                        <div className="movie-list2 ">
-                            {
-                                this.props.movieList && this.props.movieList.map((movie, imdbID) => {
-                                    return (<div className="list" key={imdbID}>
-                                        <li><img className="img" src={movie.Poster} alt="Img" /></li>
-                                        <li><span><h4>Title:</h4>{movie.Title}</span></li>
-                                        <li><h3>Movie Year: {movie.Year}</h3></li>
-                                        <li><button
-                                            className="button"
-                                            onClick={() => this.addToNominated(movie)}
-                                            disabled={nominatedList.find(n => n.imdbID === movie.imdbID)}>
-                                            {nominatedList.find(n => n.imdbID === movie.imdbID) ? 'nominated' : 'nominate'}
-                                        </button></li>
+                    <div className="movie-list2 ">
+                        {
+                            this.props.movieList && this.props.movieList.map((movie, imdbID) => {
+                                return (<div className="list" key={imdbID}>
+                                    <li><img className="img" src={movie.Poster} alt="Img" /></li>
+                                    <li><span><h4>Title:</h4>{movie.Title}</span></li>
+                                    <li><h3>Movie Year: {movie.Year}</h3></li>
+                                    <li><button
+                                        className="button"
+                                        onClick={() => {
+                                            this.addToNominated(movie)
 
-                                    </div>)
-                                })
-                            }
-                        </div>
+                                            if (nominatedList.length === 4) {
+                                                toast('you have 5 nomination')
+                                            }
+                                        }}
+                                        disabled={nominatedList.find(n => n.imdbID === movie.imdbID)}>
+                                        {nominatedList.find(n => n.imdbID === movie.imdbID) ? 'nominated' : 'nominate'}
+                                    </button></li>
+
+                                </div>)
+                            })
+                        }
+                    </div>
                 </div>
                 <div className="nomList">
                     <Nominated nominatedList={this.state.nominatedList} removeNominated={this.removeNominated} />
                 </div>
-
+                <ToastContainer type="success" position="top-right" />
             </div>
         )
     }
