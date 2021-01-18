@@ -4,10 +4,10 @@ import '../nominated.css';
 class Nominated extends React.Component {
 
     state = {
-        text:'naminated'
+        text:'nominated'
     }
-
-
+      
+ 
     render() {
        const { nominatedList, removeNominated } = this.props;
         return (

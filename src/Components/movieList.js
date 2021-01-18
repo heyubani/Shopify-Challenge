@@ -4,6 +4,8 @@ import Nominated from './nominatedList'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+ 
+
 class MovieList extends React.Component {
 
     state = {
@@ -11,8 +13,8 @@ class MovieList extends React.Component {
     }
 
     addToNominated = movie => {
-        this.setState({ nominatedList: [movie, ...this.state.nominatedList] })
-
+        this.setState({ nominatedList: [movie, ...this.state.nominatedList]})
+        this.nominatedList(...this.state.nominatedList )
     }
 
     removeNominated = (id) => {
@@ -23,8 +25,11 @@ class MovieList extends React.Component {
             nominatedList: removeList
         })
     }
-
+     
+    nominatedList  = (data) => localStorage.setItem('nominatedList', JSON.stringify(data))
+     
     render() {
+        console.log(Nominated)
         const { nominatedList } = this.state
         return (
             <div className="movieList container">
@@ -42,8 +47,13 @@ class MovieList extends React.Component {
                                             this.addToNominated(movie)
           
                                             if (nominatedList.length === 4) {
-                                                toast('you have selected 5 movies for nomination')
-                                            } return toast('you can only select 5 movies for nomination')
+                                                toast.success('5 movies successfully nominated')
+                                            } else if(nominatedList.length <= 4){
+                                                toast.warning('select 5 movies')
+                                            } else
+                                                return toast.error('movies already selected')
+                                                
+                                            
                                         }}
                                         disabled={nominatedList.find(n => n.imdbID === movie.imdbID)}>
                                         {nominatedList.find(n => n.imdbID === movie.imdbID) ? 'nominated' : 'nominate'}
@@ -55,9 +65,12 @@ class MovieList extends React.Component {
                     </div>
                 </div><hr style={{ color:"000", height:'auto', border:'.px solid gray',opacity:'.2'}}/>
                 <div className="nomList">
-                    <Nominated nominatedList={this.state.nominatedList} removeNominated={this.removeNominated} />
+                    <Nominated 
+                    nominatedList={this.state.nominatedList} 
+                    removeNominated={this.removeNominated}
+                     />
                 </div>
-                <ToastContainer type="success" position="top-right" />
+                <ToastContainer />
             </div>
         )
     }
