@@ -42,8 +42,8 @@ class MovieList extends React.Component {
                                             this.addToNominated(movie)
           
                                             if (nominatedList.length === 4) {
-                                                toast('you can only select 5 movies for nomination')
-                                            }
+                                                toast('you have selected 5 movies for nomination')
+                                            } return toast('you can only select 5 movies for nomination')
                                         }}
                                         disabled={nominatedList.find(n => n.imdbID === movie.imdbID)}>
                                         {nominatedList.find(n => n.imdbID === movie.imdbID) ? 'nominated' : 'nominate'}
